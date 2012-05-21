@@ -1,0 +1,12 @@
+{
+    "name": "socket.io-mw",
+    "version": "0.0.1",
+    "priavte": true,
+    "contributors": [
+        "Serge Borbit <serge.borbit@gmail.com>"
+    ],
+    "dependencies": {
+        "scoket.io": "~0",
+        "async": "~0"
+    }
+}

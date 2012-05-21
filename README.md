@@ -1,0 +1,1 @@
+Mikro wrapper for socket.io to make code more structured. Implements middleware pattern. 
