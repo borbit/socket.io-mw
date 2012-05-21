@@ -6,7 +6,7 @@
         "Serge Borbit <serge.borbit@gmail.com>"
     ],
     "dependencies": {
-        "scoket.io": "~0",
+        "socket.io": "~0",
         "async": "~0"
     }
 }
