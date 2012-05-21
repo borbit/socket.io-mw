@@ -28,11 +28,14 @@ function mw(http) {
   
   io.sockets.on('connection', bind);
   
-  function on(events) {
+  function on(events) {    
     util.isArray(events) || (events = [events]);
     
+    var fn = slice.call(arguments, 1);
+    
     events.forEach(function(event) {
-      stacks[event] = slice.call(arguments, 1);
+      stacks[event] || (stacks[event] = []);
+      stacks[event] = stacks[event].concat(fn);
     });
   }
   
