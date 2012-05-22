@@ -9,15 +9,34 @@ function middleware(socket, stack) {
     async.forEachSeries(stack, function(fn, next) {
       fn(socket, payload, next);
     }, function(err) {
-      if (!callback) return;
+      if (!callback) {
+        return;
+      }
       
       if (err) {
-        callback({error: err.message});
+        callback({error: parseError(err)});
       } else {
         callback(payload.res);
       }
     });
   };
+}
+
+function parseError(err) {
+  if (_.isFunction(err.toJSON)) {
+    return err.toJSON();
+  }
+  
+  var result = {
+    name: err.name
+  , message: err.message
+  };
+  
+  if (err.data) {
+    result.data = err.data;
+  }
+  
+  return result;
 }
 
 function mw(http) {
