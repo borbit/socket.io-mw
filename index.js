@@ -4,7 +4,11 @@ var _ = require('underscore')
 
 function middleware(socket, stack) {
   return function(req, callback) {
-    var payload = {req: req || {}, res: {}};
+    // get the client ip address
+    var ip = socket.handshake.headers['x-forwarded-for'] ||
+             socket.handshake.address.address;
+             
+    var payload = {req: req || {}, res: {}, ip: ip};
     
     async.forEachSeries(stack, function(fn, next) {
       fn(socket, payload, next);
